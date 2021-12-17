@@ -56,8 +56,6 @@ def GetPackageVersionCatalog(Name):
             while catalog[endindex:endindex+1].isnumeric() or catalog[endindex:endindex+1] == ".":
                 endindex += 1
             FoundVersion.insert(0, catalog[newstartindex:endindex])
-            #print(catalog[newstartindex:endindex])
-            #print(catalog[i.end():i.end()+16])
     return FoundVersion
 
 #
@@ -72,7 +70,7 @@ if os.path.exists("Catalog.json"):
     file = open("Catalog.json", "r", encoding='utf-8')
     catalog = file.readline()
 
-    print("catalog is found")
+    print("Working...")
 else:
     print("catalog is not found")
     os.system("pause")
@@ -94,14 +92,13 @@ for i in dirlist:
     ListedVersions = GetPackageVersionCatalog(Name)
     if Version not in ListedVersions:
         deletelist.insert(0, i)
-    
+
 ## Delete unlisted packages
 #
 for o in deletelist:
     shutil.rmtree(o)
-    print(o)
+    print("Delete" + o)
 
+print("Finished")
 os.system("pause")
 exit()
-
-
